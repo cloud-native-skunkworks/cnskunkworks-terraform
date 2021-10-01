@@ -1,4 +1,9 @@
+resource "civo_firewall" "my-firewall" {
+    name = "my-firewall"
+}
+
 resource "civo_kubernetes_cluster" "cluster" {
+  firewall_id = civo_firewall.my-firewall.id
   name              = var.cluster_name
   applications      = ""
   num_target_nodes  = var.cluster_nodes
